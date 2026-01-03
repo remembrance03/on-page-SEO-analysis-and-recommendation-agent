@@ -1,6 +1,7 @@
 # on page SEO analysis and recommendation agent
 
 A FastAPI-based service that retrieves web pages, performs rule-based on-page SEO analysis, relies on GPT-4 mini model accessed via GitHub Models to generate content improvement recommendations, and returns results as both a structured JSON response and a styled HTML report. 
+
 ---
 
 ## Features
