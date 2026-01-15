@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup  #for HTML parsing
  
 from src.utils.schemas import Heading, ParsedData  #for data models
 from src.core.config import get_settings
+from src.utils.errors import FetchError  #for custom fetch exception
 
 #for safely extracting text from HTML tags
 def _safe_get_text(tag: Any) -> str:
@@ -26,7 +27,7 @@ def fetch_and_parse(url: str) -> ParsedData:
         )
         response.raise_for_status()
     except requests.RequestException as exc:
-        raise ValueError(f"Failed to fetch URL: {exc}") from exc
+        raise FetchError(f"Failed to fetch URL: {exc}") from exc
 
     soup = BeautifulSoup(response.text, "html.parser")
 
