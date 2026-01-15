@@ -5,7 +5,8 @@ from pathlib import Path     #for file path manipulations
 import webbrowser           #for opening report in default browser
 
 from src.utils.schemas import OptimizeRequest, OptimizeResponse    #for request/response models
-from src.utils.optimizer import optimize_page              #for SEO optimization workflow   
+from src.utils.optimizer import optimize_page              #for SEO optimization workflow
+from src.utils.errors import FetchError, ParseError, AIResponseError  #for custom exceptions   
 
 app = FastAPI(title="On-page SEO Optimizer")       #API instance
 logger = logging.getLogger(__name__)               #logger for error logging
@@ -16,11 +17,11 @@ logger = logging.getLogger(__name__)               #logger for error logging
 async def optimize(data: OptimizeRequest) -> OptimizeResponse:
     try:
         return optimize_page(str(data.url), data.keyword)
-    except ValueError as exc:
-        logger.error(f"Validation error: {exc}")
+    except (FetchError, ParseError) as exc:
+        logger.error(f"Data error: {exc}")
         raise HTTPException(status_code=400, detail=str(exc)) from exc
-    except RuntimeError as exc:
-        logger.error(f"Runtime error: {exc}")
+    except AIResponseError as exc:
+        logger.error(f"AI service error: {exc}")
         raise HTTPException(status_code=500, detail=str(exc)) from exc
     except Exception as exc:
         logger.error(f"Unexpected error: {exc}\n{traceback.format_exc()}")
@@ -35,11 +36,11 @@ async def optimize_and_save(data: OptimizeRequest) -> OptimizeResponse:
 
     try:
         result = optimize_page(str(data.url), data.keyword)
-    except ValueError as exc:
-        logger.error(f"Validation error: {exc}")
+    except (FetchError, ParseError) as exc:
+        logger.error(f"Data error: {exc}")
         raise HTTPException(status_code=400, detail=str(exc)) from exc
-    except RuntimeError as exc:
-        logger.error(f"Runtime error: {exc}")
+    except AIResponseError as exc:
+        logger.error(f"AI service error: {exc}")
         raise HTTPException(status_code=500, detail=str(exc)) from exc
     except Exception as exc:
         logger.error(f"Unexpected error: {exc}\n{traceback.format_exc()}")
