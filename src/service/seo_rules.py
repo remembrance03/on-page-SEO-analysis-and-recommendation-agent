@@ -23,6 +23,6 @@ def run_seo_checks(parsed: ParsedData, keyword: str | None = None) -> list[str]:
         issues.append("Content is thin (less than 500 words)")    #checking word count of content
 
     if keyword and keyword.lower() not in parsed.title.lower():   #checking keyword in title
-        issues.append("Target keyword missing from title")   #checking keyword in title
+        issues.append("Target keyword missing from title")   
 
     return issues   #returning list of identified SEO issues
