@@ -29,10 +29,13 @@ A FastAPI-based service that retrieves web pages, performs rule-based on-page SE
 Create `.env` in the project root:
 
 ```
-GITHUB_MODELS_TOKEN= your token here
+GITHUB_MODELS_TOKEN=your_token_here
+GITHUB_MODELS_ENDPOINT=https://models.inference.ai.azure.com
 REQUEST_TIMEOUT=10
 USER_AGENT=SEO-Optimizer/1.0
 ```
+
+**Note**: `GITHUB_MODELS_ENDPOINT` has a default value and is optional unless you're using a different endpoint.
 
 ---
 
@@ -63,11 +66,16 @@ App runs at http://127.0.0.1:8000 (docs at /docs).
 **Notes** 
 - `report.html` is generated automatically and is listed in `.gitignore`.
 - LLM calls require your GitHub Models token; no OpenAI key is needed.
+- The app uses OpenAI's structured outputs (requires `openai>=1.50.0`) for type-safe AI responses.
 - Make sure your `.env` is correctly set before running the app.
 
 ---
 
 ## Endpoints
 - `POST /optimize` → JSON with parsed_data, issues, suggestions, report (HTML string)
+<<<<<<< Updated upstream
 - `POST /optimize/html` → Returns the HTML report directly
 - `POST /optimize/save` → Returns JSON and also writes `report.html` (opened in your default browser)
+=======
+- `POST /optimize/save` → Returns JSON and also writes `report.html` (opened in your default browser)
+>>>>>>> Stashed changes
