@@ -17,6 +17,7 @@ load_dotenv(DOTENV_PATH)
                         #immutable settings prevent accidental changes at runtime
 class Settings:
     github_models_token: str | None = os.getenv("GITHUB_MODELS_TOKEN")
+    github_models_endpoint: str = os.getenv("GITHUB_MODELS_ENDPOINT", "https://models.inference.ai.azure.com")
     request_timeout: int = int(os.getenv("REQUEST_TIMEOUT", "10"))
     user_agent: str = os.getenv("USER_AGENT", "SEO-Optimizer/1.0")
 
