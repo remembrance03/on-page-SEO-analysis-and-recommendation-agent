@@ -3,6 +3,6 @@ uvicorn>=0.27.0         #for running the ASGI server
 requests>=2.31.0        #for making HTTP requests
 beautifulsoup4>=4.12.0  #for parsing HTML
 lxml>=5.0.0             # optional: faster HTML parsing for BeautifulSoup
-openai>=1.10.0          #for interacting with OpenAI API
+openai>=1.50.0          #for interacting with OpenAI API (requires 1.50+ for structured outputs)
 python-dotenv>=1.0.0    #for loading environment variables
 pydantic>=2.5.0         #for data validation and settings management
