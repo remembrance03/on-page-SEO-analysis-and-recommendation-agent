@@ -73,9 +73,4 @@ App runs at http://127.0.0.1:8000 (docs at /docs).
 
 ## Endpoints
 - `POST /optimize` → JSON with parsed_data, issues, suggestions, report (HTML string)
-<<<<<<< Updated upstream
-- `POST /optimize/html` → Returns the HTML report directly
 - `POST /optimize/save` → Returns JSON and also writes `report.html` (opened in your default browser)
-=======
-- `POST /optimize/save` → Returns JSON and also writes `report.html` (opened in your default browser)
->>>>>>> Stashed changes
