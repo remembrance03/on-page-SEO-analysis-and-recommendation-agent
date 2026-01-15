@@ -20,10 +20,10 @@ class ParsedData(BaseModel):
 
 #data model for AI-generated SEO suggestions
 class Suggestions(BaseModel):
-    improved_title: str
-    improved_meta_description: str
-    semantic_keywords: list[str]
-    faqs: list[str]
+    improved_title: str = Field(..., max_length=60, description="Optimized page title (max 60 characters)")
+    improved_meta_description: str = Field(..., max_length=160, description="Optimized meta description (max 160 characters)")
+    semantic_keywords: list[str] = Field(default_factory=list, description="Relevant semantic keywords")
+    faqs: list[str] = Field(default_factory=list, description="Suggested FAQ questions")
 
 #data model for optimization request for a given URL to include optional target keyword
 class OptimizeRequest(BaseModel):
